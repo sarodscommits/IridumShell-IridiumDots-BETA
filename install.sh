@@ -32,7 +32,7 @@ run()  { if (( DRY )); then echo "  [dry-run] $*"; else "$@"; fi; }
 # Package list without comments / blank lines
 pkglist() { grep -vE '^\s*(#|$)' "$1" | awk '{print $1}'; }
 
-# ── checks ──
+# checks
 [[ $EUID -eq 0 ]] && die "Run as your normal user, not root (sudo is used when needed)."
 [[ -f /etc/arch-release ]] || die "This installer only supports Arch Linux."
 command -v sudo >/dev/null || die "sudo is required."
@@ -102,7 +102,7 @@ setup_dirs() {
     ok "folders"
 }
 
-# ── groups, kernel modules, services ──
+# groups, kernel modules, services
 setup_system() {
     info "Adding $USER to the input (infinite desktop) and i2c (ddcutil) groups"
     getent group i2c >/dev/null || run sudo groupadd -r i2c
