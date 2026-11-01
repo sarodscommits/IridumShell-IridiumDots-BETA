@@ -6,11 +6,23 @@ built-in apps (file explorer, text editor, gallery, music player).
 
 ## Install (Arch Linux)
 
+One line (clones into `~/dotfiles`, or updates it, then runs the installer):
+
 ```bash
-git clone https://github.com/sarodscommits/IridumShell-IridiumDots.git ~/dotfiles
-cd ~/dotfiles
-./install.sh
+bash <(curl -fsSL https://raw.githubusercontent.com/sarodscommits/IridumShell-IridiumDots/main/bootstrap.sh)
 ```
+
+While the repo is private that URL needs auth, so clone it with GitHub CLI instead:
+
+```bash
+sudo pacman -S --needed git github-cli
+gh auth login
+gh repo clone sarodscommits/IridumShell-IridiumDots ~/dotfiles
+~/dotfiles/bootstrap.sh
+```
+
+Arguments after `bootstrap.sh` are passed to `install.sh`. Running it again pulls the
+latest changes and re-links everything.
 
 Then log out and pick the **Hyprland** session.
 
