@@ -5,7 +5,7 @@ Hyprland (Lua config) desktop with a full Quickshell shell: bar/island, control 
 launcher, notifications, lockscreen, wallpaper picker, infinite desktop, gaming panel and
 built-in apps (file explorer, text editor, gallery, music player).
 
-## Install (Arch Linux)
+## Install (Arch/Arch-based)
 
 One line (clones into `~/dotfiles`, or updates it, then runs the installer):
 
