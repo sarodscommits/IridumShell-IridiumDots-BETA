@@ -1,4 +1,5 @@
-# Iridium Shell — Hyprland + Quickshell dotfiles
+# Iridium Shell — Hyprland + Quickshell dotfiles 
+o algo
 
 Hyprland (Lua config) desktop with a full Quickshell shell: bar/island, control center,
 launcher, notifications, lockscreen, wallpaper picker, infinite desktop, gaming panel and
