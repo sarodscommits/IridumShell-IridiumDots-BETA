@@ -1,0 +1,10 @@
+# AUR packages (installed with yay or paru)
+quickshell-git
+python-pywal16
+mpvpaper
+pamtester
+ttf-google-sans
+ttf-material-symbols-variable-git
+ttf-plus-jakarta-sans
+ttf-nothing-font-git
+ttf-google-fonts-typewolf

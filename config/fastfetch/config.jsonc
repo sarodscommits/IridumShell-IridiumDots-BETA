@@ -1,0 +1,109 @@
+{
+
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+
+  "display": {
+
+    "key": {
+
+      "width": 12 
+
+    },
+
+    "separator": " -  " 
+
+  },
+
+  "logo": {
+
+    "source": "~/.config/fastfetch/ascii.txt",
+
+    "type": "auto",
+
+    "color": { "1": "green" },
+
+    "padding": { "top": 2, "right": 2 }
+
+  },
+
+  "modules": [
+
+    "break",
+
+    
+
+    {
+
+      "type": "custom",
+
+      "format": ""
+
+    },
+
+    { "type": "host", "key": " 󰌢 HOST" },
+
+    { "type": "os", "key": " 󰣇 OS" },
+
+    { "type": "wm", "key": "  WM" },
+
+    { "type": "uptime", "key": " 󱎫 UPTIME" },
+
+    { "type": "packages", "key": " 󰏖 PKGS" },
+
+    { 
+
+        "type": "cpu", 
+
+        "key": "  CPU",
+
+        "format": "{1}" 
+
+    },
+
+    { 
+
+        "type": "gpu", 
+
+        "key": " 󰢮 GPU",
+
+        "format": "{2}" 
+
+    },
+
+    { 
+
+        "type": "memory", 
+
+        "key": "  MEM",
+
+        "format": "{1} / {2}" 
+
+    },
+
+    "break", // Un pequeño espacio antes de los colores
+
+    {
+
+        "type": "custom",
+
+        // Reemplaza el módulo rígido por una sola línea de círculos usando secuencias de escape ANSI
+
+        "format": "             {#30}  {#31}  {#32}  {#33}  {#34}  {#35}  {#36}  {#37}"
+
+    },
+
+    // Línea inferior decorativa
+
+    {
+
+      "type": "custom",
+
+      "format": ""
+
+    },
+
+    "break"
+
+  ]
+
+}

@@ -1,0 +1,9 @@
+[config]
+set_wallpaper = false
+
+[templates]
+
+[templates.kitty]
+input_path = '~/.config/matugen/templates/kitty.conf'
+output_path = '~/.config/kitty/colors-matugen.conf'
+post_hook = 'kill -SIGUSR1 $(pgrep -x kitty)'

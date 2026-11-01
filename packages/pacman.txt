@@ -1,0 +1,111 @@
+# Official repo packages (core / extra). One per line; '#' starts a comment.
+
+# Build tools (needed to install yay / AUR packages)
+base-devel
+git
+
+# Hyprland session
+hyprland
+xdg-desktop-portal-hyprland
+xdg-desktop-portal-gtk
+polkit-gnome
+gnome-keyring
+hyprsunset
+sddm
+
+# Qt runtime for quickshell
+qt6-wayland
+qt6-svg
+qt6-imageformats
+qt6-multimedia
+qt6-multimedia-ffmpeg
+
+# Theming / wallpaper
+matugen
+awww
+imagemagick
+
+# Terminal & CLI apps
+bash
+bash-completion
+kitty
+fastfetch
+yazi
+cava
+mousepad
+
+# Audio / media
+pipewire
+pipewire-pulse
+pipewire-audio
+wireplumber
+libpulse
+easyeffects
+playerctl
+mpv
+ffmpeg
+
+# Network / Bluetooth
+networkmanager
+bluez
+bluez-utils
+iputils
+
+# Hardware / system info
+brightnessctl
+ddcutil
+i2c-tools
+lm_sensors
+power-profiles-daemon
+pciutils
+udisks2
+util-linux
+systemd
+coreutils
+
+# Screenshots / recording / clipboard / input
+grim
+slurp
+wl-clipboard
+gpu-screen-recorder
+wf-recorder
+wtype
+ydotool
+
+# Tools used by the shell backends
+socat
+openbsd-netcat
+jq
+curl
+inotify-tools
+poppler
+libarchive
+7zip
+unrar
+perl-image-exiftool
+file
+trash-cli
+zenity
+libnotify
+fontconfig
+xdg-utils
+xdg-user-dirs
+glib2
+dbus
+
+# Python
+python
+python-mutagen
+python-pillow
+python-gobject
+python-evdev
+python-py7zr
+python-pipx
+
+# Gaming panel
+lact
+mangohud
+gamemode
+
+# Fonts
+ttf-nerd-fonts-symbols

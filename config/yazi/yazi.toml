@@ -1,0 +1,19 @@
+[opener]
+edit = [
+    { run = 'mousepad "$@"', block = false, desc = "Edit" }
+]
+
+[open]
+rules = [
+    # Detecta scripts por su tipo MIME
+    { mime = "text/x-shellscript", use = "edit" },
+    
+    # Detecta cualquier archivo que termine en .sh usando una expresión regular
+    { url = '^.*\.sh$', use = "edit" },
+    
+    # Detecta cualquier archivo de texto general
+    { mime = "text/*", use = "edit" },
+    
+    # Salvavidas: Cualquier archivo restante (coincide con todo mediante un regex)
+    { url = '^.*$', use = "edit" }
+]

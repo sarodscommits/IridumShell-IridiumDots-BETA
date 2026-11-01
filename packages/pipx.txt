@@ -1,0 +1,2 @@
+# Python apps installed with pipx
+spotdl
