@@ -12,15 +12,6 @@ One line (clones into `~/dotfiles`, or updates it, then runs the installer):
 bash <(curl -fsSL https://raw.githubusercontent.com/sarodscommits/IridumShell-IridiumDots/main/bootstrap.sh)
 ```
 
-While the repo is private that URL needs auth, so clone it with GitHub CLI instead:
-
-```bash
-sudo pacman -S --needed git github-cli
-gh auth login
-gh repo clone sarodscommits/IridumShell-IridiumDots ~/dotfiles
-~/dotfiles/bootstrap.sh
-```
-
 Arguments after `bootstrap.sh` are passed to `install.sh`. Running it again pulls the
 latest changes and re-links everything.
 
