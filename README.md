@@ -1,6 +1,10 @@
 # Iridium Shell — Hyprland + Quickshell dotfiles 
 o algo
 
+## Important notice: 
+As the repository name suggests, this is a beta version, one that I will also be experimenting with and testing, so it is important that you report any bugs, issues, questions, or other concerns you may have here
+pspspspsps
+
 Hyprland (Lua config) desktop with a full Quickshell shell: bar/island, control center,
 launcher, notifications, lockscreen, wallpaper picker, infinite desktop, gaming panel and
 built-in apps (file explorer, text editor, gallery, music player).
