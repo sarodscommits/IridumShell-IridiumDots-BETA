@@ -87,7 +87,11 @@ link_configs() {
     info "Linking configs"
     for d in "${CONFIGS[@]}"; do link "$REPO/config/$d" "$HOME/.config/$d"; done
     for f in "${HOME_FILES[@]}"; do link "$REPO/home/$f" "$HOME/$f"; done
-    run chmod +x "$REPO"/config/hypr/scripts/*.py "$REPO"/config/quickshell/scripts/*.sh "$REPO"/config/quickshell/scripts/*.py
+    # every script with a shebang (in case the copy lost its permissions)
+    while IFS= read -r -d '' f; do
+        [[ "$(head -c2 "$f")" == '#!' ]] && run chmod +x "$f"
+    done < <(find "$REPO/config" "$REPO/install.sh" "$REPO/bootstrap.sh" -type f \( -name '*.py' -o -name '*.sh' \) -print0)
+    ok "scripts are executable"
 }
 
 # ── user folders / caches the shell expects ──
@@ -112,6 +116,20 @@ setup_system() {
     if (( DRY )); then echo "  [dry-run] write /etc/modules-load.d/i2c-dev.conf"
     else echo i2c-dev | sudo tee /etc/modules-load.d/i2c-dev.conf >/dev/null; fi
     run sudo modprobe i2c-dev || true
+
+    info "udev rules: input devices (infinite desktop), uinput (ydotool), i2c (ddcutil)"
+    if (( DRY )); then echo "  [dry-run] write /etc/udev/rules.d/99-iridium.rules"
+    else
+        sudo tee /etc/udev/rules.d/99-iridium.rules >/dev/null <<'RULES'
+SUBSYSTEM=="input", KERNEL=="event*", GROUP="input", MODE="0660"
+KERNEL=="uinput", SUBSYSTEM=="misc", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"
+KERNEL=="i2c-[0-9]*", GROUP="i2c", MODE="0660"
+RULES
+        echo uinput | sudo tee /etc/modules-load.d/uinput.conf >/dev/null
+    fi
+    run sudo modprobe uinput || true
+    run sudo udevadm control --reload-rules
+    run sudo udevadm trigger
 
     info "Enabling services"
     for s in NetworkManager bluetooth power-profiles-daemon lactd; do
