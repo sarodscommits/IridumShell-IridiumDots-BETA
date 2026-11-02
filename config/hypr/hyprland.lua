@@ -67,7 +67,6 @@ end
 
 
 hl.on("hyprland.start", function()
-    hl.exec_cmd('command -v openrgb >/dev/null && openrgb --profile "orange" --startminimized')
     hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=Hyprland")
     hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
 
@@ -269,3 +268,9 @@ hl.bind("SUPER + Tab", hl.dsp.global("quickshell:toggleWindowSwitcher")) -- @kb:
 hl.bind("SUPER + E",   hl.dsp.global("quickshell:toggleFileExplorer"))   -- @kb:file_explorer
 hl.bind("SUPER + T",   hl.dsp.global("quickshell:toggleTextEditor"))     -- @kb:text_editor
 hl.bind("SUPER + M",   hl.dsp.global("quickshell:toggleMusicPlayer"))    -- @kb:music_player
+
+--hl.config({
+--    render = {
+--        cm_auto_hdr = 0,
+--    },
+--})
