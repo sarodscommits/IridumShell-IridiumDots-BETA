@@ -57,3 +57,6 @@ falls back to defaults when they're missing.
 ## Wallpapers
 
 Put images or videos in `~/Wallpapers` and open the picker with **Super+W**.
+
+## Source Credits:
+-Magnific.com -Upbeat.io (And I don't remember the others srry)
