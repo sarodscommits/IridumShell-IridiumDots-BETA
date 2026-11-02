@@ -13,6 +13,7 @@ Potential issue: If your monitor turns off momentarily and displays an odd color
 
 ## Clarifications: 
 A portion of this code was assisted by Claude; all translations into other languages ​​were performed by Claude. It is important to be clear about this, as it could otherwise lead to confusion or frustration.
+Yeayeayeayeayea, I’m a fk vibecoder
 
 ## Install (Arch/Arch-based)
 
