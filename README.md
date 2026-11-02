@@ -11,6 +11,9 @@ built-in apps (file explorer, text editor, gallery, music player).
 
 Potential issue: If your monitor turns off momentarily and displays an odd color filter when you set an app to full screen, uncomment the last lines in `hyprland.lua`.
 
+## Clarifications: 
+A portion of this code was assisted by Claude; all translations into other languages ​​were performed by Claude. It is important to be clear about this, as it could otherwise lead to confusion or frustration.
+
 ## Install (Arch/Arch-based)
 
 One line (clones into `~/dotfiles`, or updates it, then runs the installer):
