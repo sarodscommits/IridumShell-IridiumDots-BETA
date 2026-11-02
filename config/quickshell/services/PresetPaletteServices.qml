@@ -137,7 +137,7 @@ KeyboardBindsServices {
         "  echo \"conf + sequences escritos, primeras lineas de conf:\"\n" +
         "  head -n 3 \"$HOME/.cache/wal/colors-kitty.conf\"\n" +
         "  FOUND=0\n" +
-        "  for s in /tmp/kitty-socket-quickshell*; do\n" +
+        "  for s in $XDG_RUNTIME_DIR/kitty-socket-quickshell*; do\n" +
         "    if [ -S \"$s\" ]; then\n" +
         "      FOUND=1\n" +
         "      echo \"aplicando a $s\"\n" +
@@ -146,7 +146,7 @@ KeyboardBindsServices {
         "    fi\n" +
         "  done\n" +
         "  if [ \"$FOUND\" = \"0\" ]; then\n" +
-        "    echo \"NO SOCKET FOUND (pattern /tmp/kitty-socket-quickshell*)\"\n" +
+        "    echo \"NO SOCKET FOUND (pattern $XDG_RUNTIME_DIR/kitty-socket-quickshell*)\"\n" +
         "  fi\n" +
         "} >> \"$LOG\" 2>&1\n"
         );

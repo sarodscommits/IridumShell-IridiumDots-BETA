@@ -18,6 +18,7 @@ import socket
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from hypr_ipc import (hyprctl_json, move_focus, move_window_exact_lua, focus_window,
                        batch_async, desktop_lock, _load_peek_state, _save_peek_state)
+RUNTIME_DIR = os.environ.get("XDG_RUNTIME_DIR") or "/tmp"  # per-user; /tmp is shared between users
 
 PROTECTED_APPS = ['brave-browser', 'chromium', 'chromium-browser', 'google-chrome',
                   'firefox', 'firefoxdeveloperedition', 'librewolf', 'vivaldi',
@@ -29,7 +30,7 @@ DIR_SHORT = {"left": "l", "right": "r", "up": "u", "down": "d"}
 # y los widgets en parallax con el desplazamiento que recibe aquí. Siempre
 # activo (si el parallax está apagado en Quickshell, nadie escucha y no pasa
 # nada).
-PARALLAX_SOCK = "/tmp/qs-parallax.sock"
+PARALLAX_SOCK = os.path.join(RUNTIME_DIR, "qs-parallax.sock")
 
 
 def notify_parallax(dx, dy):

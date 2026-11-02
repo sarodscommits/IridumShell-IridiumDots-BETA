@@ -19,7 +19,7 @@ Uso:
     python3 peek_window.py setpos <address> <x> <y>
     python3 peek_window.py declutter <address>
 
-Estado (posicion original antes del peek) se guarda en /tmp/qs_peek_state.json,
+Estado (posicion original antes del peek) se guarda en $XDG_RUNTIME_DIR/qs_peek_state.json,
 mapeado por address, para poder restaurar exactamente aunque la ventana se
 haya "movido" (peekeado) mientras tanto. Si se pide peek() dos veces seguidas
 sobre la misma ventana sin restore() en medio (hover rapido dentro-fuera-
@@ -51,9 +51,10 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from hypr_ipc import (hyprctl_json, move_window_exact, desktop_lock,
                        _load_peek_state as load_state,
                        _save_peek_state as save_state)
+RUNTIME_DIR = os.environ.get("XDG_RUNTIME_DIR") or "/tmp"  # per-user; /tmp is shared between users
 
 PEEK_MARGIN = 5  # px visibles dentro del monitor en la esquina
-DEBUG_LOG = "/tmp/qs_peek_debug.log"
+DEBUG_LOG = os.path.join(RUNTIME_DIR, "qs_peek_debug.log")
 
 
 def log(msg):
@@ -239,7 +240,7 @@ def declutter(address):
     para alejar temporalmente TODAS las ventanas del escritorio -- aunque
     ya esten a la vista -- mientras se arrastra un widget, para poder
     ver el escritorio debajo. Comparte el mismo estado
-    (/tmp/qs_peek_state.json) y la misma logica de "no pisar la posicion
+    ($XDG_RUNTIME_DIR/qs_peek_state.json) y la misma logica de "no pisar la posicion
     original ya guardada" que peek(), asi que restore() funciona igual
     sin importar si la ventana llego a su esquina via peek() o
     declutter().

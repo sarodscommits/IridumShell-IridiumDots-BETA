@@ -462,11 +462,11 @@ Component {
 
 WallpaperPicker { id: wallpaperPickerLoader }
 
-// Wallpaper parallax from /tmp/qs-parallax.sock
+// Wallpaper parallax from $XDG_RUNTIME_DIR/qs-parallax.sock
 Process {
 id: parallaxRecv
 running: globalState.deferredReady && globalState.parallaxEnabled
-command: ["python3", "-u", "-c", "import socket, os, sys, select\np = '/tmp/qs-parallax.sock'\ntry: os.unlink(p)\nexcept OSError: pass\ns = socket.socket(socket.AF_UNIX, socket.SOCK_DGRAM)\ns.bind(p); s.setblocking(False)\nwhile True:\n    select.select([s], [], [])\n    ax = ay = 0.0\n    while True:\n        try: d = s.recv(64)\n        except (BlockingIOError, InterruptedError): break\n        try:\n            a, b = d.split(); ax += float(a); ay += float(b)\n        except Exception: pass\n    if ax or ay:\n        sys.stdout.write('%.2f %.2f\\n' % (ax, ay)); sys.stdout.flush()\n"]
+command: ["python3", "-u", "-c", "import socket, os, sys, select\np = os.path.join(os.environ.get('XDG_RUNTIME_DIR') or '/tmp', 'qs-parallax.sock')\ntry: os.unlink(p)\nexcept OSError: pass\ns = socket.socket(socket.AF_UNIX, socket.SOCK_DGRAM)\ns.bind(p); s.setblocking(False)\nwhile True:\n    select.select([s], [], [])\n    ax = ay = 0.0\n    while True:\n        try: d = s.recv(64)\n        except (BlockingIOError, InterruptedError): break\n        try:\n            a, b = d.split(); ax += float(a); ay += float(b)\n        except Exception: pass\n    if ax or ay:\n        sys.stdout.write('%.2f %.2f\\n' % (ax, ay)); sys.stdout.flush()\n"]
 stdout: SplitParser {
   onRead: (line) => {
     var parts = line.trim().split(" ");

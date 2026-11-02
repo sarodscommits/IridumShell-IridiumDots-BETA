@@ -322,13 +322,13 @@ MediaServices {
         "case \"$art\" in\n" +
         "  file://*) path=\"${art#file://}\" ;;\n" +
         "  http://*|https://*)\n" +
-        "    tmp=\"/tmp/qs_media_art_cache\"\n" +
+        "    tmp=\"$XDG_RUNTIME_DIR/qs_media_art_cache\"\n" +
         "    curl -sL --max-time 3 \"$art\" -o \"$tmp\" 2>/dev/null || exit 1\n" +
         "    path=\"$tmp\" ;;\n" +
         "esac\n" +
         "[ -n \"$path\" ] && [ -f \"$path\" ] || { echo 'ERR:archivo no existe'; exit 1; }\n" +
         "ext=\"${path##*.}\"\n" +
-        "cp \"$path\" \"/tmp/qs_lastcover_debug.${ext}\" 2>/dev/null\n" +
+        "cp \"$path\" \"$XDG_RUNTIME_DIR/qs_lastcover_debug.${ext}\" 2>/dev/null\n" +
         "if command -v magick >/dev/null 2>&1; then\n" +
         "  dim=$(magick identify -format '%wx%h' \"$path\" 2>/dev/null)\n" +
         "  col=$(magick \"$path\" -resize 1x1 -format '%[hex:p{0,0}]' info: 2>/dev/null)\n" +
@@ -338,7 +338,7 @@ MediaServices {
         "fi\n" +
         "echo \"DIM:${dim}\"\n" +
         "echo \"COL:${col}\"\n" +
-        "echo \"DEBUGFILE:/tmp/qs_lastcover_debug.${ext}\"",
+        "echo \"DEBUGFILE:$XDG_RUNTIME_DIR/qs_lastcover_debug.${ext}\"",
         "_", globalState.mediaArtUrl
         ]
         stdout: SplitParser {

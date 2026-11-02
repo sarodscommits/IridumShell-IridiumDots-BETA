@@ -282,7 +282,7 @@ ShellRoot {
 
     readonly property string scriptsDir: "$HOME/.config/quickshell/scripts"
 
-    readonly property string kittyReloadBash: "  for s in /tmp/kitty-socket-quickshell*; do\n" +
+    readonly property string kittyReloadBash: "  for s in $XDG_RUNTIME_DIR/kitty-socket-quickshell*; do\n" +
         "    [ -S \"$s\" ] && kitty @ --to \"unix:$s\" set-colors -a -c \"$HOME/.cache/wal/colors-kitty.conf\" >/dev/null 2>&1\n" +
         "  done\n"
 }

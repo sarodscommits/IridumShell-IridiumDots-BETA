@@ -209,7 +209,7 @@ BarLayoutState {
     function peekWindowsInstant(addresses) {
         if (!addresses || addresses.length === 0) return;
         Quickshell.execDetached(["bash", "-c",
-            "exec 9>/tmp/qs_peek_noanim.lock; flock 9; " +
+            "exec 9>$XDG_RUNTIME_DIR/qs_peek_noanim.lock; flock 9; " +
             "hyprctl eval 'hl.animation({ leaf = \"windowsMove\", enabled = false })' >/dev/null 2>&1; " +
             "for a in \"$@\"; do /usr/bin/python3 \"$HOME\"/.config/hypr/scripts/peek_window.py peek \"$a\"; done; " +
             "hyprctl eval 'hl.animation({ leaf = \"windowsMove\", enabled = true, speed = 6, spring = \"elasticSmoth\" })' >/dev/null 2>&1",

@@ -85,7 +85,7 @@ MediaState {
 
     function gamingSendEsc(tag) {
         Quickshell.execDetached(["bash", "-c",
-            "log=/tmp/qs-gaming-esc.log; " +
+            "log=$XDG_RUNTIME_DIR/qs-gaming-esc.log; " +
             "if command -v wtype >/dev/null 2>&1; then wtype -s 40 -P Escape -s 70 -p Escape 2>>\"$log\" && echo \"$(date +%T) " + tag + " wtype ok\" >>\"$log\"; " +
             "elif command -v ydotool >/dev/null 2>&1; then ydotool key --key-delay 70 1:1 1:0 2>>\"$log\" && echo \"$(date +%T) " + tag + " ydotool ok\" >>\"$log\"; " +
             "else hyprctl dispatch sendshortcut ', Escape, activewindow' >>\"$log\" 2>&1; echo \"$(date +%T) " + tag + " hyprctl\" >>\"$log\"; fi"]);

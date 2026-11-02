@@ -42,7 +42,7 @@ QtObject {
         for (var i = 0; i < win.items.length; i++) if (win.items[i].address !== chosen) others.push(win.items[i].address);
         win.gs.windowSwitcherOpen = false;
         Quickshell.execDetached(["bash", "-c",
-            "exec 9>/tmp/qs_peek_noanim.lock; flock 9; " +
+            "exec 9>$XDG_RUNTIME_DIR/qs_peek_noanim.lock; flock 9; " +
             "hyprctl eval 'hl.animation({ leaf = \"windowsMove\", enabled = false })' >/dev/null 2>&1; " +
             "C=\"$1\"; W=\"$2\"; shift 2; " +
             "if [ -z \"$C\" ]; then for a in \"$@\"; do /usr/bin/python3 " + scriptsDir + "/peek_window.py restore \"$a\"; done; fi; " +
@@ -76,7 +76,7 @@ QtObject {
     function runRestore(win, addrs) {
         if (!addrs || addrs.length === 0) return;
         Quickshell.execDetached(["bash", "-c",
-            "exec 9>/tmp/qs_peek_noanim.lock; flock 9; " +
+            "exec 9>$XDG_RUNTIME_DIR/qs_peek_noanim.lock; flock 9; " +
             "hyprctl eval 'hl.animation({ leaf = \"windowsMove\", enabled = false })' >/dev/null 2>&1; " +
             "for a in \"$@\"; do /usr/bin/python3 " + scriptsDir + "/peek_window.py restore \"$a\"; done; " +
             "hyprctl eval 'hl.animation({ leaf = \"windowsMove\", enabled = true, speed = 6, spring = \"elasticSmoth\" })' >/dev/null 2>&1",

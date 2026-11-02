@@ -67,6 +67,7 @@ import threading
 import time
 
 from hypr_ipc import move_window_exact_lua, resize_window_exact_lua
+RUNTIME_DIR = os.environ.get("XDG_RUNTIME_DIR") or "/tmp"  # per-user; /tmp is shared between users
 
 # ── Ajustes ──────────────────────────────────────────────────────────────
 GAP = 7                     # px visibles entre ventanas pegadas
@@ -92,7 +93,7 @@ NO_ANIM_WHILE_DRAG = True   # no_anim solo en la ventana arrastrada (ver arriba)
 # Ajustes > Infinite desktop > Imán de ventanas escribe aquí un JSON. Se relee
 # (si cambió) al empezar cada arrastre/redimensionado, así que los cambios
 # aplican al instante sin reiniciar el daemon. Sin archivo: valores de arriba.
-CONFIG_PATH = "/tmp/infinite-desktop-magnet"
+CONFIG_PATH = os.path.join(RUNTIME_DIR, "infinite-desktop-magnet")
 MOVE_ENABLED = True
 RESIZE_ENABLED = True
 _cfg_mtime = None
@@ -112,7 +113,7 @@ _CFG_KEYS = {
 
 
 def reload_config():
-    """Aplica /tmp/infinite-desktop-magnet si cambió desde la última lectura."""
+    """Aplica $XDG_RUNTIME_DIR/infinite-desktop-magnet si cambió desde la última lectura."""
     global _cfg_mtime
     try:
         mt = os.stat(CONFIG_PATH).st_mtime

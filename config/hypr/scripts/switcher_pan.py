@@ -4,7 +4,7 @@ switcher_pan.py <address>
 
 Usado por WindowSwitcher.qml al elegir una ventana. Toma la posicion
 ORIGINAL de cada ventana flotante del workspace (la guardada por
-peek_window.py en /tmp/qs_peek_state.json si estaba peekeada; si no, la
+peek_window.py en $XDG_RUNTIME_DIR/qs_peek_state.json si estaba peekeada; si no, la
 actual), calcula el desplazamiento que lleva la ventana elegida al centro
 del monitor y mueve TODAS las ventanas con ese mismo desplazamiento, asi
 se conserva la disposicion relativa (como paneo del escritorio infinito).
@@ -15,8 +15,9 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from hypr_ipc import (hyprctl_json, move_window_exact, desktop_lock,
                       _load_peek_state as load_state,
                       _save_peek_state as save_state)
+RUNTIME_DIR = os.environ.get("XDG_RUNTIME_DIR") or "/tmp"  # per-user; /tmp is shared between users
 
-LOG = "/tmp/qs_switcher_pan.log"
+LOG = os.path.join(RUNTIME_DIR, "qs_switcher_pan.log")
 
 def log(m):
     try:

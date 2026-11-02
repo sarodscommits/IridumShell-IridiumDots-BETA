@@ -236,7 +236,7 @@ AppearanceServices {
     function buildMpvLaunchBashSnippet() {
       var fpsFilter = globalState.wallpaperFpsLimit < 60 ? ("fps=" + globalState.wallpaperFpsLimit) : "";
       return (
-        "SOCK=\"/tmp/mpvpaper-wallpaper.sock\"\n" +
+        "SOCK=\"$XDG_RUNTIME_DIR/mpvpaper-wallpaper.sock\"\n" +
         "rm -f \"$SOCK\" 2>/dev/null\n" +
         "SCREEN_W=$(hyprctl monitors -j 2>/dev/null | jq '[.[] | select(.disabled==false) | .width] | max // empty')\n" +
         "SCREEN_H=$(hyprctl monitors -j 2>/dev/null | jq '[.[] | select(.disabled==false) | .height] | max // empty')\n" +
@@ -268,7 +268,7 @@ AppearanceServices {
       if (!isCurrentWallpaperAnimated()) return;
       var val = paused ? "true" : "false";
       var script =
-        "SOCK=\"/tmp/mpvpaper-wallpaper.sock\"\n" +
+        "SOCK=\"$XDG_RUNTIME_DIR/mpvpaper-wallpaper.sock\"\n" +
         "[ -S \"$SOCK\" ] && echo '{\"command\":[\"set_property\",\"pause\"," + val + "]}' | socat - \"$SOCK\" >/dev/null 2>&1\n";
       Quickshell.execDetached(["bash", "-c", script]);
     }
@@ -287,7 +287,7 @@ AppearanceServices {
       if (!isCurrentWallpaperAnimated()) return;
       var fpsFilter = v < 60 ? ("fps=" + v) : "";
       var script =
-        "SOCK=\"/tmp/mpvpaper-wallpaper.sock\"\n" +
+        "SOCK=\"$XDG_RUNTIME_DIR/mpvpaper-wallpaper.sock\"\n" +
         "[ -S \"$SOCK\" ] && echo '{\"command\":[\"vf\",\"set\"," + JSON.stringify(fpsFilter) + "]}' | socat - \"$SOCK\" >/dev/null 2>&1\n";
       Quickshell.execDetached(["bash", "-c", script]);
     }

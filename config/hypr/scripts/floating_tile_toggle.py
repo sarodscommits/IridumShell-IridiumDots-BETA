@@ -92,9 +92,10 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from hypr_ipc import (hyprctl_json, toggle_floating_lua, move_window_exact_lua,
                        resize_window_exact_lua, focus_window_lua, move_window_tiled_lua,
                        batch, desktop_lock)
+RUNTIME_DIR = os.environ.get("XDG_RUNTIME_DIR") or "/tmp"  # per-user; /tmp is shared between users
 
-LOCK_FILE  = "/tmp/floating_tile_toggle.lock"
-STATE_FILE = "/tmp/floating_tile_state.json"
+LOCK_FILE  = os.path.join(RUNTIME_DIR, "floating_tile_toggle.lock")
+STATE_FILE = os.path.join(RUNTIME_DIR, "floating_tile_state.json")
 
 # ──────────────────────────────────────────────
 # Integracion con el modo lienzo de Quickshell (CanvasMode.qml)
@@ -108,8 +109,8 @@ STATE_FILE = "/tmp/floating_tile_state.json"
 #      que la animacion no muestre frames rotos y guarda su geometria);
 #   2. se usa la geometria que cada ventana tiene EN EL LIENZO (la escribe
 #      CanvasMode.qml en CANVAS_GEO_FILE) en lugar de "at"/"size" reales.
-CANVAS_STATE_FILE = "/tmp/qs_canvas_mode"
-CANVAS_GEO_FILE   = "/tmp/qs_canvas_geo.json"
+CANVAS_STATE_FILE = os.path.join(RUNTIME_DIR, "qs_canvas_mode")
+CANVAS_GEO_FILE   = os.path.join(RUNTIME_DIR, "qs_canvas_geo.json")
 
 def canvas_active():
     return os.path.exists(CANVAS_STATE_FILE)

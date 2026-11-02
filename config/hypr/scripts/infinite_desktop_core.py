@@ -12,6 +12,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from hypr_ipc import move_window_exact_lua, batch_async
 from zoom_canvas import CanvasZoom
 from window_magnet import WindowMagnet, ResizeMagnet
+RUNTIME_DIR = os.environ.get("XDG_RUNTIME_DIR") or "/tmp"  # per-user; /tmp is shared between users
 
 DEVICE_RESCAN_INTERVAL = 3.0
 
@@ -38,7 +39,7 @@ INERTIA_MAX_SPEED = 5000.0  # px/s
 INERTIA_MAX_DIST  = 0.6     # max glide distance as a fraction of monitor width
 
 # Written by Quickshell settings: {"enabled", "friction", "maxDist"}; read on each release
-INERTIA_CONFIG = "/tmp/infinite-desktop-inertia"
+INERTIA_CONFIG = os.path.join(RUNTIME_DIR, "infinite-desktop-inertia")
 
 def read_inertia_config():
     cfg = {'enabled': INERTIA_ENABLED, 'friction': INERTIA_FRICTION, 'maxDist': INERTIA_MAX_DIST}
@@ -59,7 +60,7 @@ def read_inertia_config():
 input_press_seq = 0
 
 # ── Parallax: deltas go to Quickshell over a unix datagram socket ──
-PARALLAX_SOCK = "/tmp/qs-parallax.sock"
+PARALLAX_SOCK = os.path.join(RUNTIME_DIR, "qs-parallax.sock")
 _parallax_sock = socket.socket(socket.AF_UNIX, socket.SOCK_DGRAM)
 _parallax_sock.setblocking(False)
 
@@ -88,7 +89,7 @@ def parallax_sender():
             notify_parallax(round(x, 2), round(y, 2))
 
 
-STATE_FILE = "/tmp/infinite-desktop-state"   # 'inverse' | 'normal', written by Quickshell
+STATE_FILE = os.path.join(RUNTIME_DIR, "infinite-desktop-state")   # 'inverse' | 'normal', written by Quickshell
 
 lock = threading.Lock()
 super_pressed = False; alt_pressed = False; ctrl_pressed = False; btn_left = False; btn_right = False

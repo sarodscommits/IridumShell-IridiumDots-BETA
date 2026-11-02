@@ -78,7 +78,7 @@ hl.on("hyprland.start", function()
 
     hl.exec_cmd('env MALLOC_CONF="background_thread:true,narenas:2,dirty_decay_ms:3000,muzzy_decay_ms:0" quickshell')
     hl.exec_cmd("awww-daemon")
-    hl.exec_cmd("python3 ~/.config/hypr/scripts/infinite_desktop_core.py 1.6 > /tmp/infinite-desktop.log 2>&1")
+    hl.exec_cmd("python3 ~/.config/hypr/scripts/infinite_desktop_core.py 1.6 > $XDG_RUNTIME_DIR/infinite-desktop.log 2>&1")
     hl.exec_cmd("python3 ~/.config/hypr/scripts/auto_layout_mode.py")
 
     -- Agente de autenticación y Llavero

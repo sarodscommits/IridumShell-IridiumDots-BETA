@@ -54,6 +54,8 @@ import subprocess
 import json
 import fcntl
 from contextlib import contextmanager
+import os
+RUNTIME_DIR = os.environ.get("XDG_RUNTIME_DIR") or "/tmp"  # per-user; /tmp is shared between users
 
 
 def _run(args, timeout=2):
@@ -89,7 +91,7 @@ def hyprctl_json(args, timeout=2):
 # use para mover ventanas DEBE envolver ese ciclo completo con esto.
 # ─────────────────────────────────────────────────────────────
 
-DESKTOP_LOCK_FILE = "/tmp/qs_infinite_desktop.lock"
+DESKTOP_LOCK_FILE = os.path.join(RUNTIME_DIR, "qs_infinite_desktop.lock")
 
 
 @contextmanager
@@ -285,7 +287,7 @@ def move_window_instant(x, y, address, timeout=2):
 # reportado por el usuario).
 # ─────────────────────────────────────────────────────────────
 
-PEEK_STATE_FILE = "/tmp/qs_peek_state.json"
+PEEK_STATE_FILE = os.path.join(RUNTIME_DIR, "qs_peek_state.json")
 
 
 def _load_peek_state():

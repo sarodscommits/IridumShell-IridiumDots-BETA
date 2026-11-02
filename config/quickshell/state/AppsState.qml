@@ -116,10 +116,10 @@ DesktopState {
     property var wsShots: ({})
 
     readonly property string wsCaptureScript:
-        "mkdir -p /tmp/qs_ws; J=$(hyprctl activeworkspace -j) || exit 1; " +
+        "mkdir -p $XDG_RUNTIME_DIR/qs_ws; J=$(hyprctl activeworkspace -j) || exit 1; " +
         "WS=$(echo \"$J\" | jq -r .id); MON=$(echo \"$J\" | jq -r .monitor); " +
-        "F=/tmp/qs_ws/ws-$WS-$1.png; grim -s 0.4 -o \"$MON\" \"$F\" || exit 1; " +
-        "for o in /tmp/qs_ws/ws-$WS-*.png; do [ \"$o\" != \"$F\" ] && rm -f \"$o\"; done; " +
+        "F=$XDG_RUNTIME_DIR/qs_ws/ws-$WS-$1.png; grim -s 0.4 -o \"$MON\" \"$F\" || exit 1; " +
+        "for o in $XDG_RUNTIME_DIR/qs_ws/ws-$WS-*.png; do [ \"$o\" != \"$F\" ] && rm -f \"$o\"; done; " +
         "echo \"$WS $F\""
 
     function wsRunCapture(proc) {

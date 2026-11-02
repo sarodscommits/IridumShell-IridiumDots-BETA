@@ -17,7 +17,7 @@ WallpaperServices {
 
     function syncCanvasInvertFile() {
       Quickshell.execDetached(["bash", "-c",
-        "printf '%s' \"$1\" > /tmp/infinite-desktop-state", "_",
+        "printf '%s' \"$1\" > $XDG_RUNTIME_DIR/infinite-desktop-state", "_",
         globalState.canvasInvertPan ? "inverse" : "normal"]);
       syncCanvasInertiaFile();
       syncMagnetFile();
@@ -30,7 +30,7 @@ WallpaperServices {
         maxDist: globalState.canvasInertiaMaxDist
       });
       Quickshell.execDetached(["bash", "-c",
-        "printf '%s' \"$1\" > /tmp/infinite-desktop-inertia.tmp && mv -f /tmp/infinite-desktop-inertia.tmp /tmp/infinite-desktop-inertia",
+        "printf '%s' \"$1\" > $XDG_RUNTIME_DIR/infinite-desktop-inertia.tmp && mv -f $XDG_RUNTIME_DIR/infinite-desktop-inertia.tmp $XDG_RUNTIME_DIR/infinite-desktop-inertia",
         "_", cfg]);
     }
 
@@ -71,7 +71,7 @@ WallpaperServices {
         breakInto: globalState.magnetBreakInto
       });
       Quickshell.execDetached(["bash", "-c",
-        "printf '%s' \"$1\" > /tmp/infinite-desktop-magnet.tmp && mv -f /tmp/infinite-desktop-magnet.tmp /tmp/infinite-desktop-magnet",
+        "printf '%s' \"$1\" > $XDG_RUNTIME_DIR/infinite-desktop-magnet.tmp && mv -f $XDG_RUNTIME_DIR/infinite-desktop-magnet.tmp $XDG_RUNTIME_DIR/infinite-desktop-magnet",
         "_", cfg]);
     }
 
