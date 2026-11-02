@@ -9,6 +9,8 @@ Hyprland (Lua config) desktop with a full Quickshell shell: bar/island, control 
 launcher, notifications, lockscreen, wallpaper picker, infinite desktop, gaming panel and
 built-in apps (file explorer, text editor, gallery, music player).
 
+Potential issue: If your monitor turns off momentarily and displays an odd color filter when you set an app to full screen, uncomment the last lines in `hyprland.lua`.
+
 ## Install (Arch/Arch-based)
 
 One line (clones into `~/dotfiles`, or updates it, then runs the installer):
